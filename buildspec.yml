@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo "Building local Docker image (simple)."
+      - docker build -t my-game:latest .
+      - echo "Build complete. Replace this with ECR tagging/push steps when ready for AWS."
+artifacts:
+  files:
+    - '**/*'
