@@ -16,7 +16,7 @@ What you have here (simple):
 
 The following diagram shows the cloud-ready architecture this project is designed to be ready for (ECS / ALB / DynamoDB / SageMaker etc.). Importantly: you do not need AWS to run the project locally — this image documents the planned cloud deployment.
 
-![Architecture](architceture cloud game.png)
+![Architecture](architceture_cloud_game.png)
 
 ## README: super-clear quick guide
 
@@ -241,4 +241,5 @@ Tell me which option (1, 2, or 3) and I will implement it with clear comments an
 ---
 
 Thanks — once you push to GitHub I can help compose a LinkedIn post and verify CI if you want.
+
 
