@@ -113,22 +113,6 @@ Proud to share my SDL C game! Built locally with Docker and a small Python AI, d
 - I can scaffold a tiny Flask backend that wraps SQLite + the AI model with two endpoints (`/player`, `/ai`) — this keeps your C game unchanged and is easy to later move to AWS.
 - I can add a simple GitHub Actions workflow that builds the Docker image and runs the `--ai-test` as a CI check.
 
-If you tell me which next step to take I'll implement it with line-by-line comments so you can follow everything easily.
-
----
-
-Thank you — once you push the repo to GitHub I can also help craft a polished LinkedIn post and verify CI configuration.
- 
----
-
-## Quick look
-
-Small, local-first SDL C game with:
-
-- A lightweight Dockerfile for easy local containerization
-- A tiny Python AI model (scikit-learn) for opponent decisions
-- Simple, copy/paste build and run instructions so you can demo quickly
-- A clear path to migrate to AWS (ECR/ECS, DynamoDB, SageMaker) when ready
 
 ## Table of contents
 
@@ -145,90 +129,12 @@ Small, local-first SDL C game with:
 
 This diagram illustrates the cloud-ready architecture the project is prepared to move toward. You do not need AWS to run locally — the image documents the intended deployment.
 
-![Architecture](architceture cloud game.png)
-
-## Prerequisites
-
-Install these on Debian/Ubuntu or WSL (copy/paste):
-
-```bash
-sudo apt update
-sudo apt install -y build-essential gcc make python3 python3-pip \
-  libsdl1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev libsdl-gfx1.2-dev libsmpeg-dev libsqlite3-dev
-pip3 install --user joblib scikit-learn numpy
-```
-
-Notes:
-- On Windows, use WSL2 or MSYS2/MinGW to compile and run the game; native Windows builds need SDL DLLs.
-
-## Build & run (local)
-
-Compile all C sources into the `GAME` binary and run quick checks:
-
-```bash
-cd /path/to/game
-gcc *.c -o GAME -g -lm -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf
-
-# Health check (fast)
-./GAME --health
-
-# AI test (runs Python AI and prints a single integer)
-./GAME --ai-test
-
-# Run the interactive game
-./GAME
-```
-
-Controls: arrow keys and Enter. Escape returns to the menu.
-
-## Docker (local)
-
-Build and run the container locally:
-
-```bash
-docker build -t my-game:latest .
-docker run --rm -it my-game:latest
-
-# or run detached and follow logs
-docker run -d --name game_container my-game:latest
-docker logs -f game_container
-```
-
-The container HEALTHCHECK uses `./GAME --health` so orchestrators can detect healthy containers.
-
-## AI and DB quick checks
-
-AI model (Python):
-```bash
-python3 ai_model.py           # prints a sample prediction
-python3 ai_model.py '[1,0,10]'  # prints a prediction for that vector
-```
-
-SQLite DB (if using `database.c`):
-```bash
-gcc -o database database.c -lsqlite3
-./database
-sqlite3 game.db "select * from Players;"
-```
-
-## Push to GitHub
-
-Initialize and push your repo (replace with your URL):
-
-```bash
-git init
-git add .
-git commit -m "Initial: SDL game + local AI + Docker"
-git remote add origin git@github.com:<your-user>/<your-repo>.git
-git branch -M main
-git push -u origin main
-```
-
 ## Troubleshooting
 
 - Missing images/fonts: if the program crashes, verify the `image/` folder and `police/DejaVuSans.ttf` exist. Add NULL checks in code to get readable error messages.
 - SDL linking errors: ensure `libsdl1.2-dev` and the image/ttf/gfx dev packages are installed.
 - Docker build issues: read the container build output; add missing apt packages when prompted.
+
 
 
 
