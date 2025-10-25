@@ -230,16 +230,6 @@ git push -u origin main
 - SDL linking errors: ensure `libsdl1.2-dev` and the image/ttf/gfx dev packages are installed.
 - Docker build issues: read the container build output; add missing apt packages when prompted.
 
-## Next steps (pick one)
 
-1. I can add a documented `deploy.sh` that builds and runs the Docker image locally.
-2. I can scaffold a tiny Flask backend that exposes `/ai` and `/player` endpoints (SQLite locally) so the C game can talk to a simple HTTP API.
-3. I can add a GitHub Actions workflow that builds the Docker image and runs the `--ai-test` in CI.
-
-Tell me which option (1, 2, or 3) and I will implement it with clear comments and step-by-step instructions.
-
----
-
-Thanks — once you push to GitHub I can help compose a LinkedIn post and verify CI if you want.
 
 
