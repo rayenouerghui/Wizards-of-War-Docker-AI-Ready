@@ -83,35 +83,6 @@ python3 ai_model.py           # prints a sample prediction
 python3 ai_model.py '[1,0,10]'  # prints prediction for that vector
 ```
 
-7) Prepare and push to GitHub (commands)
-
-```bash
-git init
-git add .
-git commit -m "Initial: SDL game + local AI + Docker"
-# create a repo on GitHub and then:
-git remote add origin git@github.com:<your-user>/<your-repo>.git
-git branch -M main
-git push -u origin main
-```
-
-8) LinkedIn copy (short):
-
-```
-Proud to share my SDL C game! Built locally with Docker and a small Python AI, designed to be AWS-ready (ECS + DynamoDB + SageMaker). Repository has clear instructions to run locally — open to feedback and tips. #GameDev #DevOps #AI #AWS
-```
-
-9) Troubleshooting tips (most common issues)
-
-- Missing images or fonts => program can crash when IMG_Load/TTF_OpenFont returns NULL. If you see a segfault, verify `image/` and `police/DejaVuSans.ttf` exist.
-- SDL linking errors at compile => ensure `libsdl1.2-dev` and related dev packages are installed.
-- Docker build errors => check build output to see which apt package is missing; typically adding the dev package listed above resolves this.
-
-10) Next steps (pick one)
-
-- I can add a tiny `deploy.sh` (one-file) that builds the Docker image and runs it with clear comments.
-- I can scaffold a tiny Flask backend that wraps SQLite + the AI model with two endpoints (`/player`, `/ai`) — this keeps your C game unchanged and is easy to later move to AWS.
-- I can add a simple GitHub Actions workflow that builds the Docker image and runs the `--ai-test` as a CI check.
 
 
 ## Table of contents
@@ -134,6 +105,7 @@ This diagram illustrates the cloud-ready architecture the project is prepared to
 - Missing images/fonts: if the program crashes, verify the `image/` folder and `police/DejaVuSans.ttf` exist. Add NULL checks in code to get readable error messages.
 - SDL linking errors: ensure `libsdl1.2-dev` and the image/ttf/gfx dev packages are installed.
 - Docker build issues: read the container build output; add missing apt packages when prompted.
+
 
 
 
